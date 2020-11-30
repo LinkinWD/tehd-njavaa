@@ -76,40 +76,48 @@ public class TehdaanJavaa {
         }
         
         
-       
-        while(true) {
-             System.out.println("Miten haluaisit toimia luvun kanssa?");
-        System.out.println("A:Ynnätä?");
-        System.out.println("B:Minustaa?");
-        System.out.println("C:Kertoa?");
-        System.out.println("D:Jakaa?");
-        // Seuraavassa muutetaan vahingossa saatu isokirjain pieneksi
-        String metodi = input.nextLine().toLowerCase();
-        
-        //Tässä tehdään laskutoimitukset.
-        
-            if(metodi.equals("a")) {
-                double summa = luku1 + luku2;
-                System.out.println("Yhteenlaskun tulos on: " + summa);
-                break;
+       //Taas kaksi looppia, joista ulompi pitää purkaa, jos oikein.
+       //Eli valitse oikea vastaus metodi, tai sinulta kysytään uudestaan.
+            OUTER:
+            while (true) {
+                System.out.println("Miten haluaisit toimia lukujen kanssa?");
+                System.out.println("A:Ynnätä?");
+                System.out.println("B:Minustaa?");
+                System.out.println("C:Kertoa?");
+                System.out.println("D:Jakaa?");
+                String metodi = input.nextLine().toLowerCase();
+                //Tässä tehdään laskutoimitukset.
+                switch (metodi) {
+                    case "a":
+                        {
+                            double summa = luku1 + luku2;
+                            System.out.println("Yhteenlaskun tulos on: " + summa);
+                            break OUTER;
+                        }
+                    case "b":
+                        {
+                            double summa = luku1 - luku2;
+                            System.out.println("Yhteenlaskun tulos on: " + summa);
+                            break OUTER;
+                        }
+                    case "c":
+                        {
+                            double summa = luku1 * luku2;
+                            System.out.println("Yhteenlaskun tulos on: " + summa);
+                            break OUTER;
+                        }
+                    case "d":
+                        {
+                            double summa = luku1 / luku2;
+                            System.out.println("Yhteenlaskun tulos on: " + summa);
+                            break OUTER;
+                        }
+                    default:
+                        break;
+                }
+                System.out.println("Lukusi ovat " +luku1 + " ja " +luku2);
+                System.out.println("Anna oikea kirjain millä lasken ne yhteen, äsköinen ei ollut valittavissa");
             }
-            else if(metodi.equals("b")) {
-                double summa = luku1 - luku2;
-                System.out.println("Yhteenlaskun tulos on: " + summa);
-                break;
-            }
-            else if(metodi.equals("c")) {
-                double summa = luku1 * luku2;
-                System.out.println("Yhteenlaskun tulos on: " + summa);
-                break;
-            }
-            else if (metodi.equals("d")) {
-                double summa = luku1 / luku2;
-                System.out.println("Yhteenlaskun tulos on: " + summa);
-                break;
-            }
-            System.out.println("Anna oikea kirjain");
-        }   
             //tämä on pääluuppia ja lopussa kysytään, haluatko laskea uudestaan.
             while(true) {
             System.out.println("haluaisitko laskea uudestaan?(k/e)");
