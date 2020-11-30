@@ -17,6 +17,8 @@ public class TehdaanJavaa {
     
     //tämä metodi tarkistaa stringin joka annettu.
     //ensiksi katotaan jos on tyhjä, silloin palautetaan False.
+    //Sillä valitoidaan että on annettu numero ja ohjelma ei kaadu vaikka annettaisiin kirjain.
+    //metodia kutsutaan kummallakin kertaa sen jälkeen, kun on pyydetty käyttäjältä numeroa.
     public static boolean onkoNumero(String strNum) {
     if (strNum == null) {
         return false;
@@ -34,9 +36,13 @@ public class TehdaanJavaa {
     
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-         
+        
+       //annetaan pääluupille nimi, että pystytään lopussa murtautumaan kerralla kahdesta loopista.
+        paaluuppi: while(true) {    
+       
+        //muuttujat nollataan loopin sisällä, mikäli joku haluaa laskea uudestaan. 
         double luku1 = 0;
-         double luku2 = 0;
+        double luku2 = 0;
         
         System.out.println("Tervetuloa maailman yksinkertaisimpaan laskuriin");
         System.out.println("Tämä ei osaa kuin laskea yhteen kaksi valitsemaasi numeroa");
@@ -49,11 +55,12 @@ public class TehdaanJavaa {
         String vastaus = input.nextLine();
         var palautus = onkoNumero(vastaus);
         //Jos palautus oli true, eli kyseessä oli luku, muutetaan
-        //Stringi doubleksi
+        //Stringi doubleksi ja poitutaan loopista.
         if(palautus == true) {
             luku1 = Double.parseDouble(vastaus);
             break;
         }
+            //tämä tulee, jos numero ei ollut numero ja looppi jatkuu.
             System.out.println("Et antanut oikeaa numeroa");
         }
         
@@ -77,6 +84,7 @@ public class TehdaanJavaa {
         // Seuraavassa muutetaan vahingossa saatu isokirjain pieneksi
         String metodi = input.nextLine().toLowerCase();
         
+        //Tässä tehdään laskutoimitukset.
         while(true) {
             if(metodi.equals("a")) {
                 double summa = luku1 + luku2;
@@ -98,8 +106,26 @@ public class TehdaanJavaa {
                 System.out.println("Yhteenlaskun tulos on: " + summa);
                 break;
             }
-        }
-        
-           
+        }   
+            //tämä on pääluuppia ja lopussa kysytään, haluatko laskea uudestaan.
+            while(true) {
+            System.out.println("haluaisitko laskea uudestaan?(k/e)");
+            // varmistetaan taas että voidaan vastaanottaa myös isoja kirjaimia
+            String lopetus = input.nextLine().toLowerCase();
+            //lopettaa vain tämän kysymysloopin ja palaa pääluupin alkuun, kaikki alkaa alusta.
+            if(lopetus.equals("k")) {
+                break;
+            }
+            else if(!lopetus.equals("e") && !lopetus.equals("k")) {
+                System.out.println("Käytäppäs oikeita kirjaimia");
+                
+            } //kahden loopin purku, pääluupin nimellä, jos haluaa lopettaa.
+            else if(lopetus.equals("e")) {
+                break paaluuppi;
+            }
+            }
+            
+            }
+         
     }
 }
