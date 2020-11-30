@@ -12,13 +12,17 @@ package linkinwd.koulu2;
 import java.util.Scanner;
 
 public class TehdaanJavaa {
-    Double luku1;
-    Double luku2;
+   
     
+    
+    //tämä metodi tarkistaa stringin joka annettu.
+    //ensiksi katotaan jos on tyhjä, silloin palautetaan False.
     public static boolean onkoNumero(String strNum) {
     if (strNum == null) {
         return false;
     }
+    //tässä muutetaan stringi doubleks, ja jos ei tuu doublea tulee errori
+    //ja vastaus on taas false
     try {
         double d = Double.parseDouble(strNum);
     } catch (NumberFormatException nfe) {
@@ -27,13 +31,12 @@ public class TehdaanJavaa {
     return true;
 }
     
-    Double plussaus() {
-        Double summa = luku1 + luku2;
-        return summa;
-    }
+    
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        
+         
+        double luku1 = 0;
+         double luku2 = 0;
         
         System.out.println("Tervetuloa maailman yksinkertaisimpaan laskuriin");
         System.out.println("Tämä ei osaa kuin laskea yhteen kaksi valitsemaasi numeroa");
@@ -45,11 +48,26 @@ public class TehdaanJavaa {
         System.out.println("Anna ensimmäinen luku!: ");
         String vastaus = input.nextLine();
         var palautus = onkoNumero(vastaus);
-            System.out.println(palautus);
+        //Jos palautus oli true, eli kyseessä oli luku, muutetaan
+        //Stringi doubleksi
+        if(palautus == true) {
+            luku1 = Double.parseDouble(vastaus);
+            break;
         }
-     /*   
+            System.out.println("Et antanut oikeaa numeroa");
+        }
+        
+        while(true) {
         System.out.println("Anna toinen luku!: ");
-        String luku2 = input.nextLine();
+        String vastaus = input.nextLine();
+        var palautus = onkoNumero(vastaus);
+        if(palautus == true) {
+            luku2 = Double.parseDouble(vastaus);
+            break;
+        }
+            System.out.println("Et antanut oikeaa numeroa");
+        }
+        
         
         System.out.println("Miten haluaisit toimia luvun kanssa?");
         System.out.println("A:Ynnätä?");
@@ -61,23 +79,27 @@ public class TehdaanJavaa {
         
         while(true) {
             if(metodi.equals("a")) {
-                System.out.println("a");
-                TehdaanJavaa YhteenLasku = new TehdaanJavaa();
-                var tulos = YhteenLasku.plussaus();
-                System.out.println(tulos);
+                double summa = luku1 + luku2;
+                System.out.println("Yhteenlaskun tulos on: " + summa);
                 break;
             }
             if(metodi.equals("b")) {
-                System.out.println("b");
+                double summa = luku1 - luku2;
+                System.out.println("Yhteenlaskun tulos on: " + summa);
+                break;
             }
             if(metodi.equals("c")) {
-                System.out.println("c");
+                double summa = luku1 * luku2;
+                System.out.println("Yhteenlaskun tulos on: " + summa);
+                break;
             }
             if (metodi.equals("d")) {
-                System.out.println("d");
+                double summa = luku1 / luku2;
+                System.out.println("Yhteenlaskun tulos on: " + summa);
+                break;
             }
         }
         
-          */  
+           
     }
 }
