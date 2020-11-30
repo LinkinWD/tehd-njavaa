@@ -76,7 +76,9 @@ public class TehdaanJavaa {
         }
         
         
-        System.out.println("Miten haluaisit toimia luvun kanssa?");
+       
+        while(true) {
+             System.out.println("Miten haluaisit toimia luvun kanssa?");
         System.out.println("A:Ynnätä?");
         System.out.println("B:Minustaa?");
         System.out.println("C:Kertoa?");
@@ -85,27 +87,28 @@ public class TehdaanJavaa {
         String metodi = input.nextLine().toLowerCase();
         
         //Tässä tehdään laskutoimitukset.
-        while(true) {
+        
             if(metodi.equals("a")) {
                 double summa = luku1 + luku2;
                 System.out.println("Yhteenlaskun tulos on: " + summa);
                 break;
             }
-            if(metodi.equals("b")) {
+            else if(metodi.equals("b")) {
                 double summa = luku1 - luku2;
                 System.out.println("Yhteenlaskun tulos on: " + summa);
                 break;
             }
-            if(metodi.equals("c")) {
+            else if(metodi.equals("c")) {
                 double summa = luku1 * luku2;
                 System.out.println("Yhteenlaskun tulos on: " + summa);
                 break;
             }
-            if (metodi.equals("d")) {
+            else if (metodi.equals("d")) {
                 double summa = luku1 / luku2;
                 System.out.println("Yhteenlaskun tulos on: " + summa);
                 break;
             }
+            System.out.println("Anna oikea kirjain");
         }   
             //tämä on pääluuppia ja lopussa kysytään, haluatko laskea uudestaan.
             while(true) {
